@@ -134,3 +134,16 @@ struct BlackHole {
         return dist2 < r_s * r_s;
     }
 };
+BlackHole SagA(vec3(0.0f, 0.0f, 0.0f), 8.54e36); // Mass of Sagittarius A black hole
+struct ObjectData {
+    vec4 posRadius; // xyz = position, w = radius
+    vec4 color;    // rgb = color, a = unused
+    float mass;
+    vec3 velocity = vec3(0.0f, 0.0f, 0.0f); // Initial velocity
+};
+vector<ObjectData> objects = {
+    {vec4(4e11f, 0.0f, 0.0f, 1e10f), vec4(1,1,0,1), 1.98891e30 },
+    {vec4(0.0f, 0.0f, 4e11f, 4e10f), vec4(1,0,0,1), 1.98891e30 },
+    {vec4(0.0f, 0.0f, 0.0f, SagA.r_s), vec4(0,0,0,1), static_cast<float>(SagA.mass) },
+    // {vec4(6e10f, 0.0f, 0.0f, 5e10f), vec4(0,1,0,1) }
+};
