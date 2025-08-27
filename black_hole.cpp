@@ -118,3 +118,19 @@ struct Camera {
     }
 };
 Camera camera;
+
+struct BlackHole {
+    vec3 position;
+    double mass;
+    double radius;
+    double r_s;
+
+    BlackHole(vec3 pos, float m) : position(pos), mass(m) {r_s = 2.0 * G * mass / (c*c);}
+    bool Intercept(float px, float py, float pz) const {
+        double dx = double(px) - double(position.x);
+        double dy = double(py) - double(position.y);
+        double dz = double(pz) - double(position.z);
+        double dist2 = dx*dx + dy*dy + dz*dz;
+        return dist2 < r_s * r_s;
+    }
+};
